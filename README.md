@@ -1,41 +1,57 @@
-ReturnService
+# ReturnService
 
-ReturnService is a fall-detection and recovery system designed to improve player retention by offering a Robux-based return option instead of forcing a full reset. When a player falls or enters an invalid state, the system safely intercepts the failure and provides a seamless way to continue gameplay.
+ReturnService is a fall-detection and recovery system designed to improve player retention by offering a Robux-based return option instead of forcing a full reset.
 
-Built with performance and flexibility in mind, ReturnService integrates cleanly into existing game systems and supports checkpoint-based recovery without disrupting player progress.
+When a player falls or enters an invalid state, the system safely detects the failure and prompts the player with a paid return option, restoring them to a safe position while preserving progress.
 
-✨ Features
+Built to be lightweight, flexible, and easy to integrate into existing Roblox projects.
 
-Automatic Fall Detection
-Continuously monitors player state to detect falls or invalid positions reliably.
+---
 
-Robux-Based Return Prompt
-Presents a clean, customizable Robux prompt allowing players to return instead of resetting.
+## ✨ Features
 
-Checkpoint / Safe Position Recovery
-Restores players to their last valid position or designated safe location.
+- **Automatic Fall Detection**  
+  Continuously monitors player state to reliably detect falls or invalid positions.
 
-Progress Preservation
-Players retain their progress, items, and state when using the return option.
+- **Robux-Based Return Prompt**  
+  Displays a customizable Robux prompt allowing players to return instead of resetting.
 
-Fail-Safe Handling
-Prevents soft-locks and unintended infinite fall scenarios.
+- **Checkpoint / Safe Position Recovery**  
+  Restores players to their last valid position or a defined safe location.
 
-Lightweight & Efficient
-Optimized to minimize performance impact on both client and server.
+- **Progress Preservation**  
+  Player progress, inventory, and state remain intact after returning.
 
-Easy Integration
-Designed to drop into existing projects with minimal setup.
+- **Fail-Safe Handling**  
+  Prevents soft-locks, infinite falling, and unintended death loops.
 
-Highly Customizable
-Supports configurable fall thresholds, prompt behavior, and recovery logic.
+- **Lightweight & Efficient**  
+  Designed to minimize performance impact on both client and server.
 
-🛠 Use Cases
+- **Easy Integration**  
+  Drop-in friendly and works alongside existing movement and checkpoint systems.
 
-Obbies and platformers
+- **Highly Customizable**  
+  Adjustable fall thresholds, prompt behavior, and recovery logic.
 
-Skill-based movement games
+---
 
-Vertical maps and tower-style gameplay
+## 🛠 Use Cases
 
-Monetized recovery / revive mechanics
+- Obbies and platformer games  
+- Vertical or tower-based maps  
+- Skill-based movement games  
+- Monetized revive or recovery mechanics  
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.  
+You are free to use, modify, and distribute this project with attribution.
+
+---
+
+## 📌 Notes
+
+ReturnService is intended to enhance player experience by reducing frustration from accidental falls while providing an optional monetized recovery path.
