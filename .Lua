@@ -21,8 +21,8 @@ local MAX_OFFERS_PER_WINDOW = 3
 local SUPPRESS_AFTER_SPAM_SECONDS = 25
 
 -- Dev Products (YOUR IDS)
-local RETURN_1_PRODUCT_ID = 3534185122 -- 10 Robux -> +1 return
-local RETURN_3_PRODUCT_ID = 3534200267 -- 25 Robux -> +3 returns
+local RETURN_1_PRODUCT_ID = 3534185022 -- 10 Robux -> +1 return
+local RETURN_3_PRODUCT_ID = 3534200067 -- 25 Robux -> +3 returns
 
 -- DataStore
 local RETURNS_STORE_NAME = "BankedReturns_v1"
