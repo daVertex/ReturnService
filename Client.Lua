@@ -1,6 +1,3 @@
---// FallReturn.Client.lua - use as name
--- Put in StarterPlayerScripts (local)
-
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
@@ -14,15 +11,9 @@ local RequestPurchase3 = remotes:WaitForChild("RequestPurchase3")
 local UseReturn        = remotes:WaitForChild("UseReturn")
 local ServerMessage    = remotes:WaitForChild("ServerMessage")
 
---====================================================
--- CONFIG
---====================================================
 local DEFAULT_TIMER = 59
 local RED_AT = 10
 
---====================================================
--- GUI ROOT
---====================================================
 local gui = Instance.new("ScreenGui")
 gui.Name = "FallReturnGui"
 gui.ResetOnSpawn = false
@@ -30,7 +21,6 @@ gui.IgnoreGuiInset = true
 gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 gui.Parent = player:WaitForChild("PlayerGui")
 
--- Dim overlay
 local overlay = Instance.new("Frame")
 overlay.Size = UDim2.fromScale(1, 1)
 overlay.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -39,7 +29,6 @@ overlay.Visible = false
 overlay.ZIndex = 1
 overlay.Parent = gui
 
--- Main card (cartoony big)
 local card = Instance.new("Frame")
 card.AnchorPoint = Vector2.new(0.5, 0.5)
 card.Position = UDim2.fromScale(0.5, 0.5)
@@ -63,14 +52,12 @@ local corner = Instance.new("UICorner")
 corner.CornerRadius = UDim.new(0, 22)
 corner.Parent = card
 
--- Outline (cartoon)
 local stroke = Instance.new("UIStroke")
 stroke.Thickness = 3
 stroke.Transparency = 0.15
 stroke.Color = Color3.fromRGB(0, 0, 0)
 stroke.Parent = card
 
--- Clean “fake drop shadow” via thick faint stroke
 local stroke2 = Instance.new("UIStroke")
 stroke2.Thickness = 8
 stroke2.Transparency = 0.85
@@ -86,9 +73,6 @@ pad.PaddingLeft = UDim.new(0, 16)
 pad.PaddingRight = UDim.new(0, 16)
 pad.Parent = card
 
---====================================================
--- TOP BAR (timer + X)
---====================================================
 local topBar = Instance.new("Frame")
 topBar.BackgroundTransparency = 1
 topBar.Size = UDim2.new(1, 0, 0, 34)
@@ -131,7 +115,6 @@ closeStroke.Transparency = 0.2
 closeStroke.Color = Color3.fromRGB(0, 0, 0)
 closeStroke.Parent = closeBtn
 
-
 local CLOSE_BG_NORMAL = Color3.fromRGB(40, 40, 45)
 local CLOSE_BG_HOVER  = Color3.fromRGB(220, 60, 60)
 
@@ -157,9 +140,6 @@ closeBtn.MouseLeave:Connect(function()
 	closeHoverOut:Play()
 end)
 
---====================================================
--- CONTENT
---====================================================
 local title = Instance.new("TextLabel")
 title.BackgroundTransparency = 1
 title.Position = UDim2.fromOffset(0, 40)
@@ -217,9 +197,6 @@ divider.BorderSizePixel = 0
 divider.ZIndex = 5
 divider.Parent = card
 
---====================================================
--- BUTTONS
---====================================================
 local function makeCartoonButton(parent, text, fillColor)
 	local btn = Instance.new("TextButton")
 	btn.AutoButtonColor = true
@@ -276,7 +253,6 @@ local function addRobuxBadge(btn)
 	t.Parent = badge
 end
 
-
 local useRow = Instance.new("Frame")
 useRow.BackgroundTransparency = 1
 useRow.Position = UDim2.fromOffset(0, 170)
@@ -288,7 +264,6 @@ local useBtn = makeCartoonButton(useRow, "USE 1 RETURN", Color3.fromRGB(70, 120,
 useBtn.AnchorPoint = Vector2.new(0.5, 0.5)
 useBtn.Position = UDim2.fromScale(0.5, 0.5)
 useBtn.Size = UDim2.new(0.70, 0, 0, 52)
-
 
 local buyRow = Instance.new("Frame")
 buyRow.BackgroundTransparency = 1
@@ -312,12 +287,10 @@ local buy3Btn = makeCartoonButton(buyRow, "BUY 3  (25)", Color3.fromRGB(40, 180,
 buy3Btn.Size = UDim2.fromOffset(210, 54)
 addRobuxBadge(buy3Btn)
 
--- Pulse scale for Buy 3
 local buy3Scale = Instance.new("UIScale")
 buy3Scale.Scale = 1
 buy3Scale.Parent = buy3Btn
 
--- BEST VALUE tag 
 local tag = Instance.new("Frame")
 tag.AnchorPoint = Vector2.new(0.5, 0)
 tag.Position = UDim2.new(1, -9, 0, -14)
@@ -348,9 +321,6 @@ tagText.TextColor3 = Color3.fromRGB(0, 0, 0)
 tagText.ZIndex = tag.ZIndex + 1
 tagText.Parent = tag
 
---====================================================
--- ANIMS
---====================================================
 local active = false
 local timerActive = false
 local labelPulseLock = false
@@ -473,7 +443,6 @@ local function startTimer(seconds)
 	timerActive = true
 	local n = seconds or DEFAULT_TIMER
 
-	-- Jiggle every 15 seconds while UI is open
 	task.spawn(function()
 		while timerActive and card.Visible do
 			task.wait(15)
@@ -529,9 +498,6 @@ local function showOffer(payload)
 	end)
 end
 
---====================================================
--- BUTTON EVENTS
---====================================================
 closeBtn.MouseButton1Click:Connect(hideInstant)
 
 useBtn.MouseButton1Click:Connect(function()
@@ -549,9 +515,6 @@ buy3Btn.MouseButton1Click:Connect(function()
 	RequestPurchase3:FireServer()
 end)
 
---====================================================
--- REMOTES
---====================================================
 OfferReturn.OnClientEvent:Connect(function(payload)
 	showOffer(payload)
 end)
